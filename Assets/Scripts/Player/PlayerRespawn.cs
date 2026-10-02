@@ -13,7 +13,7 @@ public class PlayerRespawn : MonoBehaviour
             transform.position = new Vector3(
                 currentCheckpoint.position.x, 
                 currentCheckpoint.position.y + 7,
-                currentCheckpoint.position.z + 1);
+                currentCheckpoint.position.z);
         }
     }
 }
