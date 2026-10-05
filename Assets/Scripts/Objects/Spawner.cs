@@ -14,22 +14,26 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform target;
     public bool isActive = true;
 
+    // create a pooler
     private void Awake()
     {
         laserPool = new ObjectPool<Laser>(CreateLaser, OnGet, OnRelease);
     }
 
+    // when a laser is get, set to active and randomize
     private void OnGet(Laser laser)
     {
         laser.gameObject.SetActive(true);
         RandomizeLaser(laser);
     }
 
+    // when released, set to not active
     private void OnRelease(Laser laser)
     {
         laser.gameObject.SetActive(false);
     }
 
+    // set the defaults of lasers based on spawner fields
     private Laser CreateLaser()
     {
         Laser laser = Instantiate(laserPrefab);
@@ -40,7 +44,7 @@ public class Spawner : MonoBehaviour
         return laser;
     }
 
-    // Update is called once per frame
+    // get one laser from pool per interval
     void Update()
     {
         if (isActive && Time.time >= timeSinceLastSpawn)
