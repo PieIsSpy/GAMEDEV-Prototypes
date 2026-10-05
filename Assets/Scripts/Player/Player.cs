@@ -4,8 +4,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] public int hp = 100;
     private int base_hp;
-    [SerializeField] public int speedMultiplier = 1;
-    [SerializeField] public int jumpMultiplier = 1;
     [SerializeField] public float threshold;
     [SerializeField] public Transform currentCheckpoint;
     private Transform body;
@@ -43,8 +41,6 @@ public class Player : MonoBehaviour
     public void ResetInfo()
     {
         hp = base_hp;
-        speedMultiplier = 1;
-        jumpMultiplier = 1;
     }
 
     public void ReturnToCheckpoint()
