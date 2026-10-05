@@ -1,9 +1,17 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
-public class MoveToTarget : MonoBehaviour
+public class Laser : MonoBehaviour
 {
     public float speed;
     public Transform target;
+
+    private IObjectPool<Laser> laserPool;
+
+    public void SetPool(IObjectPool<Laser> pool)
+    {
+        laserPool = pool;
+    }
 
     private void Update()
     {
@@ -19,7 +27,12 @@ public class MoveToTarget : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            DespawnLaser();
         }
+    }
+
+    public void DespawnLaser()
+    {
+        laserPool.Release(this);
     }
 }
