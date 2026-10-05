@@ -7,6 +7,8 @@ public class CheckpointTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            other.gameObject.transform.parent.gameObject.TryGetComponent(out Player player);
+            player.currentCheckpoint = transform;
             print("Checkpoint!");
         }
     }

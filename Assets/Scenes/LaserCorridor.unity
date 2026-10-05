@@ -1017,7 +1017,7 @@ PrefabInstance:
     - target: {fileID: 8668145690071971415, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: currentCheckpoint
       value: 
-      objectReference: {fileID: 1650521907}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 212896375134302501, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
     - {fileID: 3129852250944753709, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
@@ -1492,7 +1492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 989629321141738621, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -38.8
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 1374242642666363548, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_Mesh
@@ -1604,27 +1604,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7176493791796202538, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 34.3
+      value: 7.9
       objectReference: {fileID: 0}
     - target: {fileID: 7695309646565886095, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 66.056625
+      value: 2.5497859
       objectReference: {fileID: 0}
     - target: {fileID: 7695309646565886095, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 25.189837
+      value: 6.1157126
       objectReference: {fileID: 0}
     - target: {fileID: 7695309646565886095, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -57.063
+      value: 88.6882
       objectReference: {fileID: 0}
     - target: {fileID: 7695309646565886095, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7695309646565886095, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.9786
+      value: 0.0674
       objectReference: {fileID: 0}
     - target: {fileID: 8671831747149225623, guid: 45fc7ad5e4af8c14fb139ea3059344f5, type: 3}
       propertyPath: m_Mesh

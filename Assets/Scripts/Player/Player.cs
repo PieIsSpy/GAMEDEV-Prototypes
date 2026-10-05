@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] int defaultHP = 100;
-    [SerializeField] int speedMultiplier = 1;
-    [SerializeField] int jumpMultiplier = 1;
-    [SerializeField] private float threshold;
-    [SerializeField] Transform currentCheckpoint;
+    [SerializeField] public int defaultHP = 100;
+    [SerializeField] public int speedMultiplier = 1;
+    [SerializeField] public int jumpMultiplier = 1;
+    [SerializeField] public float threshold;
+    [SerializeField] public Transform currentCheckpoint;
     private Transform body;
 
     private void Start()
