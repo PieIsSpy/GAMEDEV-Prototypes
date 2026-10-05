@@ -1,3 +1,4 @@
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,6 +8,7 @@ public class Spawner : MonoBehaviour
     private float timeSinceLastSpawn;
 
     [SerializeField] private Laser laserPrefab;
+    [SerializeField] private float laserSpeed;
     private IObjectPool<Laser> laserPool;
 
     [SerializeField] private Transform target;
@@ -19,7 +21,7 @@ public class Spawner : MonoBehaviour
     private void OnGet(Laser laser)
     {
         laser.gameObject.SetActive(true);
-        laser.transform.position = gameObject.transform.position;
+        RandomizeLaser(laser);
     }
 
     private void OnRelease(Laser laser)
@@ -31,8 +33,9 @@ public class Spawner : MonoBehaviour
     {
         Laser laser = Instantiate(laserPrefab);
         laser.SetPool(laserPool);
-        laser.transform.position = gameObject.transform.position;
+        RandomizeLaser(laser);
         laser.target = target;
+        laser.speed = laserSpeed;
         return laser;
     }
 
@@ -44,5 +47,28 @@ public class Spawner : MonoBehaviour
             laserPool.Get();
             timeSinceLastSpawn = Time.time + spawnInterval;
         }
+    }
+
+    void RandomizeLaser(Laser laser)
+    {
+        laser.transform.position = RandomPosition();
+        laser.transform.Rotate(RandomRotation());
+    }
+
+    Vector3 RandomPosition()
+    {
+        float height = gameObject.GetComponent<BoxCollider>().size.y;
+        float y = Random.Range(2, height);
+        return new Vector3(
+            gameObject.transform.position.x,
+            y,
+            gameObject.transform.position.z
+        );
+    }
+
+    Vector3 RandomRotation()
+    {
+        float z = Random.Range(60, 120);
+        return new Vector3(0, 0, z);
     }
 }
