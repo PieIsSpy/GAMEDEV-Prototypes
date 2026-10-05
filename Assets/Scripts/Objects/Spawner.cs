@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     private IObjectPool<Laser> laserPool;
 
     [SerializeField] private Transform target;
+    public bool isActive = true;
 
     private void Awake()
     {
@@ -42,7 +43,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= timeSinceLastSpawn)
+        if (isActive && Time.time >= timeSinceLastSpawn)
         {
             laserPool.Get();
             timeSinceLastSpawn = Time.time + spawnInterval;

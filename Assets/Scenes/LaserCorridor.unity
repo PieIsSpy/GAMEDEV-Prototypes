@@ -514,6 +514,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 8407608157719356022, guid: 4ecea328137f7eb43bcffd9f4f8970e2, type: 3}
   laserSpeed: 10
   target: {fileID: 2023175712}
+  isActive: 1
 --- !u!43 &227045834
 Mesh:
   m_ObjectHideFlags: 0
@@ -3193,12 +3194,16 @@ PrefabInstance:
       objectReference: {fileID: 559699567}
     - target: {fileID: 8041239212894281324, guid: ee7c2f84005d7d7438e637eefbaf6ec8, type: 3}
       propertyPath: m_VersionIndex
-      value: 651
+      value: 654
       objectReference: {fileID: 0}
     - target: {fileID: 8105414658796539421, guid: ee7c2f84005d7d7438e637eefbaf6ec8, type: 3}
       propertyPath: endUI
       value: 
       objectReference: {fileID: 1650032153}
+    - target: {fileID: 8105414658796539421, guid: ee7c2f84005d7d7438e637eefbaf6ec8, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 203394768}
     - target: {fileID: 8468640865875571665, guid: ee7c2f84005d7d7438e637eefbaf6ec8, type: 3}
       propertyPath: m_Name
       value: EndingPlatform
