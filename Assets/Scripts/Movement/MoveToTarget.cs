@@ -7,10 +7,19 @@ public class MoveToTarget : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(
+        Vector3 targetPos = new Vector3(
             target.position.x,
             transform.position.y,
             target.position.z
-        ), speed * Time.deltaTime);
+        );
+
+        if (transform.position != targetPos)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
