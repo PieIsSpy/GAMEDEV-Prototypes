@@ -1906,6 +1906,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8668145690071971415, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
+      propertyPath: base_hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668145690071971415, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 1650521907}
