@@ -15,7 +15,6 @@ public class DamagePlayer : MonoBehaviour
         {
             other.gameObject.transform.parent.gameObject.TryGetComponent(out Player player);
             player.hp -= 10;
-            print("Ouch!");
             laser.DespawnLaser();
         }
     }

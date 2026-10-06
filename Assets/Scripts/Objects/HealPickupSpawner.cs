@@ -14,7 +14,6 @@ public class HealPickupSpawner : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log($"Script attached to: {gameObject.name} at {transform.position}");
         pickupPool = new ObjectPool<HealPickup>(CreatePickup, OnGet, OnRelease);
     }
 

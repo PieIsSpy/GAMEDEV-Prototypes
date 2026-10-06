@@ -20,15 +20,6 @@ public class Player : MonoBehaviour
         bool died = hp <= 0;
         if (currentCheckpoint && (fellOver || died)) {
             Respawn();
-
-            if (fellOver)
-            {
-                print("Player escaped the Matrix.");
-            }
-            else if (died)
-            {
-                print("Player was sent to Israel by Laser.");
-            }
         }
     }
 

@@ -16,7 +16,6 @@ public class HealPlayer : MonoBehaviour
         {
             other.gameObject.transform.parent.gameObject.TryGetComponent(out Player player);
             player.hp = Math.Min(player.hp + 10, player.base_hp);
-            print("Yum!");
             pickup.DespawnPickup();
         }
     }
