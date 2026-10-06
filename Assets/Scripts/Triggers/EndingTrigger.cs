@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TriggerEnd : MonoBehaviour
@@ -9,7 +8,12 @@ public class TriggerEnd : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        endUI.enabled = true;
-        spawner.isActive = false;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            endUI.enabled = true;
+            spawner.isActive = false;
+            other.gameObject.TryGetComponent(out HealPickupSpawner healer);
+            healer.isActive = false;
+        }
     }
 }

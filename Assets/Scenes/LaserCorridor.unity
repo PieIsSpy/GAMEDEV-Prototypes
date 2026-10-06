@@ -453,9 +453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03da8b278a8a95f4395fbc3c1c8cca4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealPickupSpawner
-  spawnInterval: 2
+  spawnInterval: 3
   pickupPrefab: {fileID: 1060077990178586337, guid: a652fac67b7a30e459b57e5cab8a6c18, type: 3}
-  despawnTimer: 4
+  despawnTimer: 10
   isActive: 1
 --- !u!43 &545868741
 Mesh:
