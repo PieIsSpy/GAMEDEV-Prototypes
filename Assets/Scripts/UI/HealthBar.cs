@@ -8,6 +8,11 @@ public class HealthBar : MonoBehaviour
     
     [SerializeField] Player player;
 
+    void Start()
+    {
+        healthBarSlider.maxValue = player.base_hp;
+    }
+
     // Update is called once per frame
     void Update()
     {

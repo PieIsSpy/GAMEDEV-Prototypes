@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        base_hp = hp;
         body = transform.Find("PlayerArmature");
     }
 
