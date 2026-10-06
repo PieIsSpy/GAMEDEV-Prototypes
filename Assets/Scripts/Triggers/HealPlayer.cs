@@ -1,16 +1,23 @@
+using System;
 using UnityEngine;
 
 public class HealPlayer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private HealPickup pickup;
     void Start()
     {
-        
+        TryGetComponent(out pickup);
     }
 
-    // Update is called once per frame
-    void Update()
+    // when the pickup hits the player armature, heal the player and release the pickup back to pool
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.transform.parent.gameObject.TryGetComponent(out Player player);
+            player.hp = Math.Min(player.hp + 10, player.base_hp);
+            print("Yum!");
+            pickup.DespawnPickup();
+        }
     }
 }

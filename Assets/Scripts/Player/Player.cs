@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] public int hp = 100;
-    private int base_hp;
-    [SerializeField] public float threshold;
-    [SerializeField] public Transform currentCheckpoint;
+    public int hp = 100;
+    public int base_hp = 100;
+    public float threshold;
+    public Transform currentCheckpoint;
     private Transform body;
 
     private void Start()

@@ -1,16 +1,34 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class HealPickup : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float despawnTimer;
+    private float lastDespawnTime;
+    private IObjectPool<HealPickup> healPickupPool;
+
+    // set the reference pool of the pickup
+    public void SetPool(IObjectPool<HealPickup> pool)
     {
-        
+        healPickupPool = pool;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Time.time >= lastDespawnTime)
+        {
+            DespawnPickup();
+            lastDespawnTime = Time.time + despawnTimer;
+        }
+        else
+        {
+            transform.Rotate(Vector3.up);
+        }
+    }
+
+    // when despawning, this laser will release itself back to the pool
+    public void DespawnPickup()
+    {
+        healPickupPool.Release(this);
     }
 }

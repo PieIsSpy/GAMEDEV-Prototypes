@@ -14,10 +14,13 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] private Transform target;
     public bool isActive = true;
 
+    private BoxCollider boxCollider;
+
     // create a pooler
     private void Awake()
     {
         laserPool = new ObjectPool<Laser>(CreateLaser, OnGet, OnRelease);
+        boxCollider = gameObject.GetComponent<BoxCollider>();
     }
 
     // when a laser is get, set to active and randomize
@@ -62,7 +65,7 @@ public class LaserSpawner : MonoBehaviour
 
     Vector3 RandomPosition()
     {
-        float height = gameObject.GetComponent<BoxCollider>().size.y;
+        float height = boxCollider.size.y;
         float y = Random.Range(2, height);
         return new Vector3(
             gameObject.transform.position.x,
