@@ -2,7 +2,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Spawner : MonoBehaviour
+public class LaserSpawner : MonoBehaviour
 {
     [SerializeField] private float spawnInterval;
     private float timeSinceLastSpawn;

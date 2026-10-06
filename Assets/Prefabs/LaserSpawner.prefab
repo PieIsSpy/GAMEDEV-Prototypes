@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6758695598332059469}
   - component: {fileID: 7826032062058276142}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: LaserSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

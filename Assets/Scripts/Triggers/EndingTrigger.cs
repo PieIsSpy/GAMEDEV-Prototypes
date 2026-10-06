@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerEnd : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI endUI;
-    [SerializeField] private Spawner spawner;
+    [SerializeField] private LaserSpawner spawner;
 
     private void OnTriggerEnter(Collider other)
     {
