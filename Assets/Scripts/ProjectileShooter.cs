@@ -1,30 +1,47 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ProjectileShooter : MonoBehaviour
 {
-    public GameObject bullet;
+    public Projectile bullet;
 
     public float shootForce, upwardForce;
     public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
+    public int magazineSize, projectilesPerTap;
     public bool allowButtonHold;
 
-    int bulletsLeft, bulletsShot;
+    int projectilesLeft, projectilesShot;
     bool shooting, readyToShoot, reloading;
     bool allowInvoke = true;
 
     public Camera fpsCam;
     public Transform attackPoint;
 
+    private IObjectPool<Projectile> projectilesPool;
+
     public void Awake()
     {
-        bulletsLeft = magazineSize;
+        projectilesPool = new ObjectPool<Projectile>(CreateProjectile, OnGet, OnRelease);
+        projectilesLeft = magazineSize;
         readyToShoot = true;
     }
 
     private void Update()
     {
         MyInput();
+    }
+
+    private void OnGet(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(true);
+        ProjectileMotion(projectile);
+    }
+
+    private void OnRelease(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(false);
     }
 
     private void MyInput()
@@ -34,13 +51,13 @@ public class ProjectileShooter : MonoBehaviour
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         // reloading
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
+        if (Input.GetKeyDown(KeyCode.R) && projectilesLeft < magazineSize && !reloading)
             Reload();
 
         // shooting
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        if (readyToShoot && shooting && !reloading && projectilesLeft > 0)
         {
-            bulletsShot = 0;
+            projectilesShot = 0;
             Shoot();
         }
     }
@@ -49,13 +66,39 @@ public class ProjectileShooter : MonoBehaviour
     {
         readyToShoot = false;
 
+        // spawn bullet
+        projectilesPool.Get();
+
+        projectilesLeft--;
+        projectilesShot++;
+
+        if (allowInvoke)
+        {
+            Invoke(nameof(ResetShot), timeBetweenShooting);
+            allowInvoke = false;
+        }
+
+        if (projectilesShot < projectilesPerTap && projectilesLeft > 0)
+        {
+            Invoke(nameof(Shoot), timeBetweenShots);
+        }
+    }
+
+    private Projectile CreateProjectile()
+    {
+        Projectile projectile = Instantiate(bullet, attackPoint.position, Quaternion.identity);
+        projectile.SetPool(projectilesPool);
+        return projectile;
+    }
+
+    private void ProjectileMotion(Projectile projectile)
+    {
         // set target to middle of the screen
         Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
 
         // raycast towards a surface
         Vector3 targetPoint;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
             targetPoint = hit.point;
         else
             targetPoint = ray.GetPoint(75);
@@ -63,33 +106,25 @@ public class ProjectileShooter : MonoBehaviour
         // find the projectile direction
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
 
-        float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
+        // randomize spread
+        float x = UnityEngine.Random.Range(-spread, spread);
+        float y = UnityEngine.Random.Range(-spread, spread);
 
         // add spread if applicable
         Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
 
-        // spawn bullet
-        GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
-        currentBullet.transform.forward = directionWithSpread.normalized;
+        // clear rigid body velocity
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
-        // add force to it
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
-        currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
+        // move projectile to gun muzzle
+        Quaternion targetRotation = Quaternion.LookRotation(directionWithSpread.normalized);
+        projectile.transform.SetPositionAndRotation(attackPoint.position, targetRotation);
 
-        bulletsLeft--;
-        bulletsShot++;
-
-        if (allowInvoke)
-        {
-            Invoke("ResetShot", timeBetweenShooting);
-            allowInvoke = false;
-        }
-
-        if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
-        {
-            Invoke(nameof(Shoot), timeBetweenShots);
-        }
+        // apply force
+        rb.AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+        rb.AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
     }
 
     private void ResetShot()
@@ -106,7 +141,7 @@ public class ProjectileShooter : MonoBehaviour
 
     private void RelaodingFinished()
     {
-        bulletsLeft = magazineSize;
+        projectilesLeft = magazineSize;
         reloading = false;
     }
 }
