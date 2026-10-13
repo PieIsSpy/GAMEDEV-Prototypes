@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private IObjectPool<Projectile> projectilePool;
     public float despawnTimer = 10f;
-    private float lastDespawnTime;
+    private bool toDespawn;
     private Coroutine despawnCoroutine;
 
     public void SetPool(IObjectPool<Projectile> pool)
@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
+        toDespawn = false;
         despawnCoroutine = StartCoroutine(DespawnAfterDelay());
     }
 
@@ -45,6 +46,10 @@ public class Projectile : MonoBehaviour
 
     public void Despawn()
     {
-        projectilePool.Release(this);
+        if (!toDespawn)
+        {
+            toDespawn = true;
+            projectilePool.Release(this);
+        }
     }
 }
