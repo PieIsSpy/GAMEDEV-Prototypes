@@ -12,6 +12,7 @@ public class PlatformMovement : MonoBehaviour
     [SerializeField] bool startMoving = true;
     public bool isRunning = true;
     private bool alreadyMoving = false;
+    private Coroutine moveCoroutine;
 
 
     private Vector3 targetPos;
@@ -36,7 +37,20 @@ public class PlatformMovement : MonoBehaviour
         }
 
         alreadyMoving = true;
-        StartCoroutine(MovePlatform());
+        isRunning = true;
+        moveCoroutine = StartCoroutine(MovePlatform());
+    }
+
+    public void StopMoving()
+    {
+        isRunning = false;
+        alreadyMoving = false;
+
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
     }
 
     IEnumerator MovePlatform()
@@ -44,7 +58,7 @@ public class PlatformMovement : MonoBehaviour
         while (isRunning)
         {
             // while the platform has not reached the target pos
-            while ((targetPos - platform.transform.position).sqrMagnitude > 0.01f)
+            while (((targetPos - platform.transform.position).sqrMagnitude > 0.01f) && isRunning)
             {
                 // keep moving towards it
                 platform.transform.position = Vector3.MoveTowards(platform.transform.position, targetPos, speed * Time.deltaTime);
@@ -57,7 +71,12 @@ public class PlatformMovement : MonoBehaviour
                 targetPos = targetPos == pointA.transform.position ? pointB.transform.position : pointA.transform.position;
 
                 // delay movement first before going to next target
-                yield return new WaitForSeconds(delay);
+                float timer = 0f;
+                while (timer < delay && isRunning)
+                {
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
             }
             else
             {
