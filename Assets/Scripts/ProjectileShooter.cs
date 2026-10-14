@@ -109,8 +109,8 @@ public class ProjectileShooter : MonoBehaviour
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
 
         // randomize spread
-        float x = UnityEngine.Random.Range(-spread, spread);
-        float y = UnityEngine.Random.Range(-spread, spread);
+        float x = Random.Range(-spread, spread);
+        float y = Random.Range(-spread, spread);
 
         // add spread if applicable
         Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
