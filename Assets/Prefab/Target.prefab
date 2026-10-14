@@ -245,7 +245,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3400391640768648422, guid: 2f27837bb4d9d4a499a3ede71ff87ff2, type: 3}
       propertyPath: m_VersionIndex
-      value: 3846
+      value: 3849
       objectReference: {fileID: 0}
     - target: {fileID: 3400391640768648422, guid: 2f27837bb4d9d4a499a3ede71ff87ff2, type: 3}
       propertyPath: m_Tangents.Array.data[0].w
@@ -1210,6 +1210,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c131d825e1ad54e4391570f27f9405a7, type: 3}
   - {fileID: 8300000, guid: 0eabef27dc02565499b20a49618b7f84, type: 3}
   - {fileID: 8300000, guid: ed3745ab3be7736409f465981375d062, type: 3}
+  playOnlyOnce: 1
 --- !u!4 &4020701919202885337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3441339488545066218, guid: 2f27837bb4d9d4a499a3ede71ff87ff2, type: 3}

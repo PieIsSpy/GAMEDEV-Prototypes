@@ -5,6 +5,8 @@ public class PlayWhenHit : MonoBehaviour
 {
     private AudioSource audioSource;
     [SerializeField] private AudioClip[] hitClips;
+    [SerializeField] private bool playOnlyOnce;
+    private bool hasPlayed = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,7 +18,12 @@ public class PlayWhenHit : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
+            if (playOnlyOnce && hasPlayed)
+            {
+                return;
+            }
             randomizeSound();
+            hasPlayed = true;
         }
     }
 
