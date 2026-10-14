@@ -1,5 +1,3 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -20,10 +18,12 @@ public class ProjectileShooter : MonoBehaviour
     public Transform attackPoint;
 
     private IObjectPool<Projectile> projectilesPool;
+    private AudioSource gunShot;
 
     public void Awake()
     {
         projectilesPool = new ObjectPool<Projectile>(CreateProjectile, OnGet, OnRelease);
+        gunShot = gameObject.GetComponentInChildren<AudioSource>();
         projectilesLeft = magazineSize;
         readyToShoot = true;
     }
@@ -68,6 +68,8 @@ public class ProjectileShooter : MonoBehaviour
 
         // spawn bullet
         projectilesPool.Get();
+        gunShot.pitch = UnityEngine.Random.Range(0.75f, 1.25f);
+        gunShot.Play();
 
         projectilesLeft--;
         projectilesShot++;
