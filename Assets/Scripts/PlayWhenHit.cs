@@ -22,12 +22,12 @@ public class PlayWhenHit : MonoBehaviour
             {
                 return;
             }
-            randomizeSound();
+            RandomizeSound();
             hasPlayed = true;
         }
     }
 
-    private void randomizeSound()
+    private void RandomizeSound()
     {
         int idx = Random.Range(0, hitClips.Length);
         AudioClip clip = hitClips[idx];

@@ -68,7 +68,7 @@ public class ProjectileShooter : MonoBehaviour
 
         // spawn bullet
         projectilesPool.Get();
-        gunShot.pitch = UnityEngine.Random.Range(0.75f, 1.25f);
+        gunShot.pitch = Random.Range(0.75f, 1.25f);
         gunShot.Play();
 
         projectilesLeft--;
