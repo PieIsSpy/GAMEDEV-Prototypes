@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        body = transform.Find("PlayerArmature");
+        body = transform.Find("PlayerCapsule");
     }
 
     private void FixedUpdate()
