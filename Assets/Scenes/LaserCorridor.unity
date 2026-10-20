@@ -1917,6 +1917,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 8.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6029340247960977364, guid: 36e958a336d8a774697ca8b5a0c379bc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8791201245025142849, guid: 36e958a336d8a774697ca8b5a0c379bc, type: 3}
       propertyPath: m_Name
       value: Spotlight (1)
@@ -2250,6 +2254,10 @@ PrefabInstance:
     - target: {fileID: 5823391688469486941, guid: 36e958a336d8a774697ca8b5a0c379bc, type: 3}
       propertyPath: m_LocalPosition.z
       value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6029340247960977364, guid: 36e958a336d8a774697ca8b5a0c379bc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8791201245025142849, guid: 36e958a336d8a774697ca8b5a0c379bc, type: 3}
       propertyPath: m_Name

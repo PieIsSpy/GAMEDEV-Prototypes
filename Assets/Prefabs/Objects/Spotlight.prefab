@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 7148926925585189072}
   - component: {fileID: 6029340247960977364}
   - component: {fileID: 7958203690975776897}
+  - component: {fileID: 7092186996192121016}
   m_Layer: 0
   m_Name: Light
-  m_TagString: Untagged
+  m_TagString: Spotlight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,6 +159,22 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &7092186996192121016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380526013755588412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1e16b3942530644890c50f2843adc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlertTrigger
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  targetHeightOffset: 1
 --- !u!1 &4092003767219616532
 GameObject:
   m_ObjectHideFlags: 0
