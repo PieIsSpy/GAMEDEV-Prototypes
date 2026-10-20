@@ -6,6 +6,7 @@ public class AlertTrigger : MonoBehaviour
     public LayerMask obstacleMask;
     public float targetHeightOffset = 1.0f;
     [SerializeField] private bool setOffOnce = true;
+    [SerializeField] GameState state;
 
     private Light spotLight;
     private Transform playerTransform;
@@ -33,7 +34,7 @@ public class AlertTrigger : MonoBehaviour
             {
                 isActive = false;
             }
-            Debug.Log("Player detected in Spotlight!");
+            state.GameAlerted();
         }
     }
 

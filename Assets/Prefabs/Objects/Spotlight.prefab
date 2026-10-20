@@ -82,7 +82,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -173,8 +173,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AlertTrigger
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   targetHeightOffset: 1
+  setOffOnce: 1
+  state: {fileID: 0}
 --- !u!1 &4092003767219616532
 GameObject:
   m_ObjectHideFlags: 0
